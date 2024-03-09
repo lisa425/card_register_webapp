@@ -3,35 +3,29 @@ import logo from './logo.svg'
 import { css } from '@emotion/react'
 import styled from '@emotion/styled'
 import './App.css'
-const containerStyles = css`
-  background-color: pink;
-`
-const bold = css`
-  font-weight: bold;
-`
-const Button = styled.button`
-  ${bold}
-  width: 200px;
-  height: 100px;
-`
+import Text from '@shared/Text'
+import Button from './components/shared/Button'
+
 function App() {
   return (
-    <div className="App" css={containerStyles}>
-      <Button>스타일버튼</Button>
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="App">
+      <Text typography="t1" display="block" color="blue">
+        t1
+      </Text>
+      <Text typography="t2">t2</Text>
+      <Text typography="t3">t3</Text>
+      <Text typography="t4">t4</Text>
+      <Text typography="t5">t5</Text>
+      <div style={{ height: 10, width: '100%', background: '#efefef' }} />
+
+      <Button color="error" size="medium">
+        클릭
+      </Button>
+      <Button color="success" full>
+        클릭
+      </Button>
+      <Button weak={true}>클릭</Button>
+      <Button disabled={true}>클릭</Button>
     </div>
   )
 }
