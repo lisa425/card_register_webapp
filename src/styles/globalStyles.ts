@@ -134,4 +134,8 @@ export default css`
     border-radius: none;
     padding: 0;
   }
+  a {
+    color: inherit;
+    text-decoration: inherit;
+  }
 `
