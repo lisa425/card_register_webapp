@@ -20,7 +20,7 @@ const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
   ) {
     const [focused, setFocused] = useState(false)
 
-    const labelColor = hasError ? 'red' : focused ? 'blue' : 'gray'
+    const labelColor = hasError ? 'red' : focused ? 'blue' : 'black'
 
     const handleFocus: FocusEventHandler<HTMLInputElement> = (event) => {
       setFocused(true)

@@ -41,6 +41,7 @@ const RAW_RUNTIME_STATE =
           ["@types/react", "npm:18.2.64"],\
           ["@types/react-dom", "npm:18.2.21"],\
           ["@types/testing-library__jest-dom", "npm:6.0.0"],\
+          ["@types/validator", "npm:13.11.9"],\
           ["craco-alias", "npm:3.0.1"],\
           ["eslint", "npm:8.57.0"],\
           ["eslint-config-prettier", "virtual:b3f0e79add371bb1e102a00a4666bdf25e4a7624fc0b0cf581796a7425b914768489f39f9cc50e643b96d2540d32fda61fab9aa9d3487d131dee8aa3258e018e#npm:9.1.0"],\
@@ -59,6 +60,7 @@ const RAW_RUNTIME_STATE =
           ["react-scripts", "virtual:b3f0e79add371bb1e102a00a4666bdf25e4a7624fc0b0cf581796a7425b914768489f39f9cc50e643b96d2540d32fda61fab9aa9d3487d131dee8aa3258e018e#npm:5.0.1"],\
           ["swiper", "npm:9.4.1"],\
           ["typescript", "patch:typescript@npm%3A4.9.5#optional!builtin<compat/typescript>::version=4.9.5&hash=289587"],\
+          ["validator", "npm:13.11.0"],\
           ["web-vitals", "npm:2.1.4"]\
         ],\
         "linkType": "SOFT"\
@@ -6668,6 +6670,15 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "../../../../.yarn/berry/cache/@types-trusted-types-npm-2.0.7-a07fc44f59-10c0.zip/node_modules/@types/trusted-types/",\
         "packageDependencies": [\
           ["@types/trusted-types", "npm:2.0.7"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["@types/validator", [\
+      ["npm:13.11.9", {\
+        "packageLocation": "../../../../.yarn/berry/cache/@types-validator-npm-13.11.9-ac3f0e748e-10c0.zip/node_modules/@types/validator/",\
+        "packageDependencies": [\
+          ["@types/validator", "npm:13.11.9"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -15006,6 +15017,7 @@ const RAW_RUNTIME_STATE =
           ["@types/react", "npm:18.2.64"],\
           ["@types/react-dom", "npm:18.2.21"],\
           ["@types/testing-library__jest-dom", "npm:6.0.0"],\
+          ["@types/validator", "npm:13.11.9"],\
           ["craco-alias", "npm:3.0.1"],\
           ["eslint", "npm:8.57.0"],\
           ["eslint-config-prettier", "virtual:b3f0e79add371bb1e102a00a4666bdf25e4a7624fc0b0cf581796a7425b914768489f39f9cc50e643b96d2540d32fda61fab9aa9d3487d131dee8aa3258e018e#npm:9.1.0"],\
@@ -15024,6 +15036,7 @@ const RAW_RUNTIME_STATE =
           ["react-scripts", "virtual:b3f0e79add371bb1e102a00a4666bdf25e4a7624fc0b0cf581796a7425b914768489f39f9cc50e643b96d2540d32fda61fab9aa9d3487d131dee8aa3258e018e#npm:5.0.1"],\
           ["swiper", "npm:9.4.1"],\
           ["typescript", "patch:typescript@npm%3A4.9.5#optional!builtin<compat/typescript>::version=4.9.5&hash=289587"],\
+          ["validator", "npm:13.11.0"],\
           ["web-vitals", "npm:2.1.4"]\
         ],\
         "linkType": "SOFT"\
@@ -19771,6 +19784,15 @@ const RAW_RUNTIME_STATE =
           ["@types/istanbul-lib-coverage", "npm:2.0.6"],\
           ["convert-source-map", "npm:1.9.0"],\
           ["source-map", "npm:0.7.4"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["validator", [\
+      ["npm:13.11.0", {\
+        "packageLocation": "../../../../.yarn/berry/cache/validator-npm-13.11.0-f0143e2784-10c0.zip/node_modules/validator/",\
+        "packageDependencies": [\
+          ["validator", "npm:13.11.0"]\
         ],\
         "linkType": "HARD"\
       }]\
