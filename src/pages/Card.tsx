@@ -1,5 +1,5 @@
-import React from 'react'
-import { useParams } from 'react-router-dom'
+import React, { useCallback } from 'react'
+import { useParams, useNavigate } from 'react-router-dom'
 import { useQuery } from 'react-query'
 import { getCard } from '@/remote/card'
 import Top from '@shared/Top'
@@ -9,13 +9,35 @@ import { motion } from 'framer-motion'
 import FixedBottomButton from '@/components/shared/FixedBottomButton'
 import Text from '@/components/shared/Text'
 import Flex from '@/components/shared/Flex'
+import { useAlertContext } from '@/contexts/AlertContext'
+import useUser from '@/hooks/auth/useUser'
 
 function CardPage() {
   //useParams를 이용해 파라미터 데이터 이용 가능
   const { id = '' } = useParams()
+  const { open } = useAlertContext()
+
+  const navigate = useNavigate()
+  const user = useUser()
+
   const { data } = useQuery(['card', id], () => getCard(id), {
     enabled: id !== '',
   })
+
+  const moveToApply = useCallback(() => {
+    if (user == null) {
+      open({
+        title: '로그인이 필요한 기능입니다.',
+        onButtonClick: () => {
+          navigate(`/signin`)
+        },
+      })
+
+      return
+    }
+
+    navigate(`/apply/${id}`)
+  }, [user, id, open, navigate])
 
   if (data == null) {
     return <div></div>
@@ -67,7 +89,10 @@ function CardPage() {
         </Flex>
       ) : null}
 
-      <FixedBottomButton label="1분만에 신청하고 혜택받기" onClick={() => {}} />
+      <FixedBottomButton
+        label="1분만에 신청하고 혜택받기"
+        onClick={moveToApply}
+      />
     </div>
   )
 }
