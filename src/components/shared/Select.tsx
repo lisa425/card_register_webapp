@@ -28,7 +28,6 @@ const Select = forwardRef<HTMLSelectElement, SelectProps>(function Select(
   { label, options, placeholder, value, ...props },
   ref,
 ) {
-  console.log(label)
   return (
     <Flex direction="column">
       {label ? (

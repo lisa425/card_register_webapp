@@ -1,32 +1,81 @@
 import BasicInfo from '@/components/apply/BasicInfo'
 import CardInfo from '@/components/apply/CardInfo'
 import Terms from '@/components/apply/Terms'
-import { useState } from 'react'
-import { ApplyValues } from '@/models/apply'
+import { useEffect, useState } from 'react'
+import { ApplyValues, APPLY_STATUS } from '@/models/apply'
+import useUser from '@/hooks/auth/useUser'
+import { useParams } from 'react-router-dom'
 
-function Apply({step, onSubmit}:{step:number, onSubmit:() => void}) {
+function Apply({ onSubmit }: { onSubmit: (applyValues: ApplyValues) => void }) {
+  const user = useUser()
+  const { id } = useParams() as { id: string }
+  const storageKey = `applied-${user?.uid}-${id}`
+
+  const [applyValues, setApplyValues] = useState<Partial<ApplyValues>>(() => {
+    const applied = localStorage.getItem(storageKey)
+
+    if (applied == null) {
+      return {
+        userId: user?.uid,
+        cardId: id,
+        step: 0,
+      }
+    }
+
+    return JSON.parse(applied)
+  })
 
   const handleTermsChange = (terms: ApplyValues['terms']) => {
-    console.log(terms)
+    setApplyValues((prevValues) => ({
+      ...prevValues,
+      terms,
+      step: (prevValues.step as number) + 1,
+    }))
   }
 
   const handleBasicInfoChange = (
     infoValues: Pick<ApplyValues, 'salary' | 'creditScore' | 'payDate'>,
   ) => {
-    console.log(infoValues)
+    setApplyValues((prevValues) => ({
+      ...prevValues,
+      ...infoValues,
+      step: (prevValues.step as number) + 1,
+    }))
   }
 
   const handleCardInfoChange = (
     cardInfoValues: Pick<ApplyValues, 'isHipass' | 'isMaster' | 'isRf'>,
   ) => {
-    console.log(cardInfoValues)
+    setApplyValues((prevValues) => ({
+      ...prevValues,
+      ...cardInfoValues,
+      step: (prevValues.step as number) + 1,
+    }))
   }
+
+  useEffect(() => {
+    if (applyValues.step === 3) {
+      localStorage.removeItem(storageKey)
+
+      onSubmit({
+        ...applyValues,
+        apppliedAt: new Date(),
+        status: APPLY_STATUS.READY,
+      } as ApplyValues)
+    } else {
+      localStorage.setItem(storageKey, JSON.stringify(applyValues))
+    }
+  }, [applyValues, applyValues.step, onSubmit, storageKey])
 
   return (
     <div>
-      {step === 0 ? <Terms onNext={handleTermsChange} /> : null}
-      {step === 1 ? <BasicInfo onNext={handleBasicInfoChange} /> : null}
-      {step === 2 ? <CardInfo onNext={handleCardInfoChange} /> : null}
+      {applyValues.step === 0 ? <Terms onNext={handleTermsChange} /> : null}
+      {applyValues.step === 1 ? (
+        <BasicInfo onNext={handleBasicInfoChange} />
+      ) : null}
+      {applyValues.step === 2 ? (
+        <CardInfo onNext={handleCardInfoChange} />
+      ) : null}
     </div>
   )
 }

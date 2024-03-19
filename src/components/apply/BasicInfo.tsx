@@ -19,8 +19,6 @@ function BasicInfo({ onNext }: { onNext: (infoValues: InfoValues) => void }) {
     }))
   }, [])
 
-  console.log(infoValues)
-
   const allSelected = Object.values(infoValues).every((value) => value)
 
   return (
