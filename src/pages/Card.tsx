@@ -11,6 +11,8 @@ import Text from '@/components/shared/Text'
 import Flex from '@/components/shared/Flex'
 import { useAlertContext } from '@/contexts/AlertContext'
 import useUser from '@/hooks/auth/useUser'
+import Spacing from '@/components/shared/Spacing'
+import Review from '@/components/card/Review'
 
 function CardPage() {
   //useParams를 이용해 파라미터 데이터 이용 가능
@@ -88,6 +90,10 @@ function CardPage() {
           <Text typography="t7">{removeHtmlTags(promotion.terms)}</Text>
         </Flex>
       ) : null}
+
+      <Spacing size={1000} />
+      <Review />
+      <Spacing size={100} />
 
       <FixedBottomButton
         label="1분만에 신청하고 혜택받기"

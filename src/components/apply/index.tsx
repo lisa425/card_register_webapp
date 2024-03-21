@@ -5,11 +5,13 @@ import { useEffect, useState } from 'react'
 import { ApplyValues, APPLY_STATUS } from '@/models/apply'
 import useUser from '@/hooks/auth/useUser'
 import { useParams } from 'react-router-dom'
+import ProgressBar from '@shared/ProgressBar'
 
 function Apply({ onSubmit }: { onSubmit: (applyValues: ApplyValues) => void }) {
   const user = useUser()
   const { id } = useParams() as { id: string }
   const storageKey = `applied-${user?.uid}-${id}`
+  const lastStep = 3
 
   const [applyValues, setApplyValues] = useState<Partial<ApplyValues>>(() => {
     const applied = localStorage.getItem(storageKey)
@@ -69,6 +71,7 @@ function Apply({ onSubmit }: { onSubmit: (applyValues: ApplyValues) => void }) {
 
   return (
     <div>
+      <ProgressBar progress={(applyValues.step as number) / lastStep} />
       {applyValues.step === 0 ? <Terms onNext={handleTermsChange} /> : null}
       {applyValues.step === 1 ? (
         <BasicInfo onNext={handleBasicInfoChange} />

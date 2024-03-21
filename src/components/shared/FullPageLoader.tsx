@@ -1,6 +1,7 @@
 import Flex from './Flex'
 import Text from './Text'
 import Spacing from './Spacing'
+import { APPLY_STATUS } from '@/models/apply'
 
 function FullPageLoader({ message }: { message?: string }) {
   return (
