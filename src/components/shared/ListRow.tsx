@@ -1,5 +1,7 @@
 import { css } from '@emotion/react'
 import Flex from './Flex'
+import Skeleton from './Skeleton'
+import Spacing from './Spacing'
 import Text from './Text'
 
 //List Row: 레이아웃 틀을 담당.
@@ -56,12 +58,33 @@ function IconArrow() {
   )
 }
 
+function ListRowSekeleton() {
+  return (
+    <Flex as="li" css={listRowContainerStyles} align="center">
+      <Flex css={listRowLeftStyles}></Flex>
+      <Flex css={listRowContentStyles}>
+        <ListRow.Texts
+          title={
+            <>
+              <Skeleton width={67} height={23} />
+              <Spacing size={2} />
+            </>
+          }
+          subTitle={<Skeleton width={85} height={20} />}
+        />
+      </Flex>
+      <Flex></Flex>
+      <IconArrow />
+    </Flex>
+  )
+}
+
 function ListRowTexts({
   title,
   subTitle,
 }: {
-  title: string
-  subTitle: string
+  title: React.ReactNode
+  subTitle: React.ReactNode
 }) {
   return (
     <Flex direction="column">
@@ -72,5 +95,6 @@ function ListRowTexts({
 }
 
 ListRow.Texts = ListRowTexts
+ListRow.Skeleton = ListRowSekeleton
 
 export default ListRow

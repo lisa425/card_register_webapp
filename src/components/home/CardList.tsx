@@ -8,6 +8,7 @@ import Badge from '../shared/Badge'
 import { useNavigate } from 'react-router-dom'
 import FixedBottomButton from '@shared/FixedBottomButton'
 import { css } from '@emotion/react'
+
 function CardList() {
   const {
     data,
@@ -23,6 +24,7 @@ function CardList() {
       getNextPageParam: (snapshot) => {
         return snapshot.lastVisible
       },
+      suspense: true,
     },
   )
 
@@ -45,7 +47,7 @@ function CardList() {
       <InfiniteScroll
         dataLength={cards.length}
         hasMore={hasNextPage}
-        loader={<></>}
+        loader={<ListRow.Skeleton />}
         next={loadMore}
         scrollThreshold="100px"
       >
